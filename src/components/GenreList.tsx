@@ -25,7 +25,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
 
   return (
     <>
-      <Heading fontSize="2xl" marginTop={9} marginBottom={3}>
+      <Heading textAlign="left" fontSize="2xl" marginTop={9} marginBottom={3}>
         Genres
       </Heading>
       <List>
@@ -33,7 +33,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
           <ListItem key={genre.id} paddingY="5px">
             <HStack>
               <Image
-                boxSize="32px"
+                boxSize="36px"
                 borderRadius={8}
                 objectFit="cover"
                 src={getCroppedImageUrl(genre.image_background)}
