@@ -9,20 +9,37 @@ import {
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
 
-const SortSelector = () => {
+interface Props {
+  onSelectSortOrder: (sortOrder: string) => void;
+  sortOrder: string;
+}
+
+const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {
+  const sortOrders = [
+    { value: "", label: "Releveance" },
+    { value: "-added", label: "Date addes" },
+    { value: "name", label: "name" },
+    { value: "-released", label: "Release date" },
+    { value: "-metacritic", label: "Popularity" },
+    { value: "-rating", label: "Average rating" },
+  ];
+
+  const currentSortOrder = sortOrders.find(
+    (order) => order.value === sortOrder
+  );
   return (
     <Flex>
       <Menu>
         <MenuButton as={Button} rightIcon={<BsChevronDown></BsChevronDown>}>
-          {selectedPlatform?.name || "Platforms"}
+          Order by: {currentSortOrder?.label || "Releveance"}
         </MenuButton>
         <MenuList>
-          {data.map((platform) => (
+          {sortOrders.map((order) => (
             <MenuItem
-              onClick={() => onSelectPlatform(platform)}
-              key={platform.id}
+              onClick={() => onSelectSortOrder(order.value)}
+              key={order.value}
             >
-              {platform.name}
+              {order.label}
             </MenuItem>
           ))}
         </MenuList>
